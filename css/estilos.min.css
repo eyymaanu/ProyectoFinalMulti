@@ -1,0 +1,29 @@
+/* Estilos para la barra de navegación */
+.navbar {
+    background-color: #f8f9fa; /* Color de fondo */
+}
+
+.navbar-brand {
+    font-weight: bold; /* Estilo de la marca */
+}
+
+/* Estilos para los enlaces de navegación */
+.nav-link {
+    color: #007bff; /* Color del texto */
+}
+
+.nav-link:hover {
+    color: #0056b3; /* Color al pasar el cursor */
+}
+
+/* Contenedor principal */
+.container {
+    margin-top: 20px; /* Espaciado superior */
+}
+
+/* Estilos para el pie de página (si decides agregar uno) */
+footer {
+    margin-top: 20px; /* Espaciado superior */
+    text-align: center; /* Centrar el texto */
+    color: #6c757d; /* Color de texto */
+}
