@@ -1,29 +1,59 @@
-/* Estilos para la barra de navegación */
+/* Cambios en el estilo del navbar */
 .navbar {
-    background-color: #f8f9fa; /* Color de fondo */
+    background-color: rgba(0, 74, 173, 0.7); /* Color azul con transparencia */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil debajo del navbar */
+    transition: background-color 0.3s ease; /* Transición suave para el fondo */
 }
 
-.navbar-brand {
-    font-weight: bold; /* Estilo de la marca */
+.navbar-nav .nav-link {
+    color: #fff;
+    margin-right: 1rem;
+    font-weight: 500;
 }
 
-/* Estilos para los enlaces de navegación */
-.nav-link {
-    color: #007bff; /* Color del texto */
+.navbar-nav .nav-link:hover {
+    color: #d1e0ff;
 }
 
-.nav-link:hover {
-    color: #0056b3; /* Color al pasar el cursor */
+/* Cambios en el contenedor principal */
+.main-box {
+    background-color: #ffffff;
+    border-radius: 15px;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); /* Sombra más marcada en la caja principal */
 }
 
-/* Contenedor principal */
-.container {
-    margin-top: 20px; /* Espaciado superior */
+.main-box h1 {
+    font-size: 2.5rem;
+    color: #004aad;
 }
 
-/* Estilos para el pie de página (si decides agregar uno) */
-footer {
-    margin-top: 20px; /* Espaciado superior */
-    text-align: center; /* Centrar el texto */
-    color: #6c757d; /* Color de texto */
+.main-box p {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+blockquote {
+    font-style: italic;
+    color: #333;
+}
+
+button {
+    background-color: #004aad;
+    border: none;
+    color: #fff;
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border-radius: 25px;
+}
+
+button:hover {
+    background-color: #003a87;
+}
+
+/* Transición suave al hacer scroll */
+.navbar.scrolled {
+    background-color: rgba(0, 74, 173, 1); /* Cuando se hace scroll, se quita la transparencia */
 }

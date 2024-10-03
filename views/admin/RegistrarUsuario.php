@@ -27,6 +27,9 @@ if (!isset($_SESSION['usu_role']) || $_SESSION['usu_role'] !== 1) {
                 <input type="text" name="apellido" class="form-control" placeholder="Apellido" required pattern="[A-Za-z\s]+" maxlength="50">
             </div>
             <div class="form-group">
+                <input type="text" name="usuario" class="form-control" placeholder="Nombre de Usuario" required pattern="[A-Za-z0-9_]+" maxlength="50">
+            </div>
+            <div class="form-group">
                 <input type="email" name="correo" class="form-control" placeholder="Correo" required maxlength="100">
             </div>
             <div class="form-group">

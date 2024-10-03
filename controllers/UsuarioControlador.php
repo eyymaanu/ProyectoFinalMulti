@@ -9,12 +9,12 @@ class UsuarioControlador {
         $this->db = $dbConnection;
     }
 
-    public function register($nombre, $apellido, $correo, $telefono, $modalidad, $curso, $cedula, $role, $contrasena) {
+    public function register($nombre, $apellido, $correo, $telefono, $modalidad, $curso, $cedula, $role, $contrasena,$usuario) {
         // Encriptar la contraseña
         $contrasenaEncriptada = encriptarCadena($contrasena);
 
         // Preparar la consulta para insertar el nuevo usuario
-        $stmt = $this->db->prepare("INSERT INTO usuarios (usu_nombre, usu_apellido, usu_correo, usu_telefono, usu_modalidad, usu_curso, usu_cedula, usu_role, usu_contrasena) VALUES (:nombre, :apellido, :correo, :telefono, :modalidad, :curso, :cedula, :role, :contrasena)");
+        $stmt = $this->db->prepare("INSERT INTO usuarios (usu_nombre, usu_apellido, usu_correo, usu_telefono, usu_modalidad, usu_curso, usu_cedula, usu_role, usu_contrasena,usu_usuario) VALUES (:nombre, :apellido, :correo, :telefono, :modalidad, :curso, :cedula, :role, :contrasena, :usuario)");
         $stmt->bindParam(':nombre', $nombre);
         $stmt->bindParam(':apellido', $apellido);
         $stmt->bindParam(':correo', $correo);
@@ -23,7 +23,8 @@ class UsuarioControlador {
         $stmt->bindParam(':curso', $curso);
         $stmt->bindParam(':cedula', $cedula);
         $stmt->bindParam(':role', $role);
-        $stmt->bindParam(':contrasena', $contrasenaEncriptada); // Bind para la contraseña
+        $stmt->bindParam(':contrasena', $contrasenaEncriptada);
+        $stmt->bindParam(':usuario',$usuario); // Bind para la contraseña
 
         // Ejecutar la consulta y verificar si se registró exitosamente
         return $stmt->execute(); // Retorna el resultado de la ejecución
@@ -35,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];
     $correo = $_POST['correo'];
+    $usuario = $_POST['usuario'];
     $telefono = $_POST['telefono'];
     $modalidad = $_POST['modalidad'];
     $curso = $_POST['curso'];
@@ -46,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $userController = new UsuarioControlador($conn); // Crear instancia de UsuarioControlador
 
-    if ($userController->register($nombre, $apellido, $correo, $telefono, $modalidad, $curso, $cedula, $role, $contrasena)) {
+    if ($userController->register($nombre, $apellido, $correo, $telefono, $modalidad, $curso, $cedula, $role, $contrasena,$usuario)) {
         // Redirigir a la página de éxito o al dashboard
         header("Location: ../index.php?page=admin/dashboard");
         exit();

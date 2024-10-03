@@ -21,6 +21,21 @@ switch ($page) {
     case 'auth/logout':
         $content = 'views/auth/logout.php';
         break;
+    case 'admin/AgregarLibro':
+        $content = 'views/admin/AgregarLibro.php';
+            break;
+    case 'admin/gestionarAutor':
+                $content = 'views/admin/gestionarAutor.php';
+            break;
+    case 'admin/ReservarLibro':
+        $content = 'views/admin/ReservarLibro.php';
+            break;
+    case 'admin/PrestarLibro':
+        $content = 'views/admin/PrestarLibro.php';
+            break;
+    case 'admin/DevolverLibro':
+        $content = 'views/admin/DevolverLibro.php';
+            break;         
     default:
         $content = 'views/auth/login.php'; // Página predeterminada
 }
