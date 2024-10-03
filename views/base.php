@@ -53,9 +53,6 @@ if (session_status() === PHP_SESSION_NONE) {
                     <li class="nav-item">
                         <a class="nav-link" href="index.php?page=admin/dashboard">Admin</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php?page=admin/RegistrarUsuario">Registrar Usuario</a>
-                    </li>
                     <?php endif; ?>
                     
                     <!-- Catálogo accesible para todos los usuarios -->

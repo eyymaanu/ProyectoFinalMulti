@@ -82,7 +82,7 @@
             <input type="password" class="form-control" id="contrasena" name="contrasena" required>
         </div>
         <div class="form-group">
-            <a href="../proyectofinalmulti/views/auth/contrasenaOlvidada.php">¿Olvidaste tu contraseña?</a>
+            <a href="../proyectofinalmulti/view/auth/contrasenaOlvidada.php">¿Olvidaste tu contraseña?</a>
         </div>
 
         <button type="submit" class="btn btn-primary">Iniciar Sesión</button>

@@ -1,24 +1,15 @@
 <?php
-
-// faltan corregir errores de redireccionamiento y buen diseño 
-
-
-//----------------//
-//---ATENCION-----//
-//----------------//
-
-
-
 session_start();
 include('../models/Auth.php');
 include('../config/database.php');
 
 $conn = Database::getConnection(); // Obtener la conexión a la base de datos
-$auth = new Auth($conn); // Crear una instancia de la clase Auth
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+     // Establecer el tipo de contenido como JSON
+
     if (isset($_POST['token']) && !empty($_POST['token'])) {
         $token = $_POST['token'];
+        
 
         // Validar el token
         $sql = 'SELECT usu_codigo FROM usuarios WHERE token = :token';
@@ -26,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bindParam(':token', $token);
         $stmt->execute();
 
-        if ($stmt->rowCount() === 1) {
+        if ($stmt->rowCount() > 0) {
             // Si el token es válido, procesar el cambio de contraseña
             if (isset($_POST['nueva_contra']) && isset($_POST['confirmar_contra'])) {
                 $nueva_contra = $_POST['nueva_contra'];
@@ -45,28 +36,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     // Ejecutar la consulta
                     if ($stmt->execute()) {
-                        $_SESSION['success'] = 'Contraseña actualizada exitosamente.';
-                        header('Location: ../');
+                        // Enviar una respuesta de éxito en formato JSON
+                        echo json_encode([
+                            'status' => 'success',
+                            'message' => 'Contraseña actualizada exitosamente.'
+                        ]);
                         exit();
                     } else {
-                        $_SESSION['error'] = 'Error al actualizar la contraseña. Inténtalo de nuevo.';
-                        header('Location: ../views/reset_password.php?token=' . htmlspecialchars($token));
+                        // Enviar una respuesta de error en formato JSON
+                        echo json_encode([
+                            'status' => 'error',
+                            'message' => 'Error al actualizar la contraseña. Inténtalo de nuevo.'
+                        ]);
                         exit();
                     }
                 } else {
-                    $_SESSION['error'] = 'Las contraseñas no coinciden.';
-                    header('Location: ../views/reset_password.php?token=' . htmlspecialchars($token));
+                    // Enviar una respuesta de error en formato JSON si las contraseñas no coinciden
+                    echo json_encode([
+                        'status' => 'error',
+                        'message' => 'Las contraseñas no coinciden.'
+                    ]);
                     exit();
                 }
             }
+
         } else {
-            $_SESSION['error'] = 'Token inválido o ya utilizado.';
-            header('Location: ../views/login.php');
+            // Enviar una respuesta de error en formato JSON si el token es inválido
+            echo json_encode([
+                'status' => 'error',
+                'message' => 'Token inválido o ya utilizado.'
+            ]);
             exit();
         }
     } else {
-        $_SESSION['error'] = 'Token no recibido.';
-        header('Location: ../views/login.php');
+        // Enviar una respuesta de error en formato JSON si no se recibe el token
+        echo json_encode([
+            'status' => 'error',
+            'message' => 'Token no recibido.'
+        ]);
         exit();
     }
 }

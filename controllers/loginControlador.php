@@ -15,8 +15,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // El inicio de sesión fue exitoso, iniciar la sesión
         $_SESSION['usu_codigo'] = $auth->getUserId(); // Suponiendo que hay un método para obtener el ID del usuario
         $_SESSION['usu_role'] = $auth->getUserRole(); // Suponiendo que hay un método para obtener el rol del usuario
+
+        if($_SESSION['usu_role'] === 1) {
+            // Si el usuario es administrador, redirigir al panel de administrador
+            header("Location: ../index.php?page=admin/dashboard");
+            exit();
+        }else{
+            // Si el usuario es consumidor, redirigir al catálogo
         header("Location: ../index.php?page=consumidor/catalogo");
         exit();
+        }
     } else {
         // Manejar error de inicio de sesión
         $error = "Nombre de usuario o contraseña incorrectos.";
