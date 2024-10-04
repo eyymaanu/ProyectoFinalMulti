@@ -1,6 +1,6 @@
 /* Cambios en el estilo del navbar */
 .navbar {
-    background-color: rgba(0, 74, 173, 0.7); /* Color azul con transparencia */
+  
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil debajo del navbar */
     transition: background-color 0.3s ease; /* Transición suave para el fondo */
 }
@@ -51,9 +51,4 @@ button {
 
 button:hover {
     background-color: #003a87;
-}
-
-/* Transición suave al hacer scroll */
-.navbar.scrolled {
-    background-color: rgba(0, 74, 173, 1); /* Cuando se hace scroll, se quita la transparencia */
 }
