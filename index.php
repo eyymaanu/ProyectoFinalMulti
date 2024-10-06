@@ -2,8 +2,7 @@
 // No llames a session_start() aquí si ya lo haces en base.php
 // session_start(); 
 
-
-require_once($_SERVER['DOCUMENT_ROOT'] . '/ProyectoFinalMulti/config/database.php');
+require_once '/config/database.php'; // Incluir el archivo Database.php
 
 $pdo = Database::getConnection();
 
