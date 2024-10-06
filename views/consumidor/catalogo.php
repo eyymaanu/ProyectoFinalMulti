@@ -7,7 +7,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/ProyectoFinalMulti/config/database.ph
 $conn = Database::getConnection();
 
 // Consultar los datos de los libros
-$sql = "SELECT lib_titulo, lib_autor_codigo, lib_img, lib_categoria, lib_cantidad_real, stock_actual FROM libros"; 
+$sql = "SELECT lib_codigo, lib_titulo, lib_autor_codigo, lib_img, lib_categoria, lib_cantidad_real, stock_actual FROM libros"; 
 $stmt = $conn->query($sql);
 $libros = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -37,7 +37,7 @@ $libros = $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
         .card-img-top {
-            height: 200px;
+            height: 350px;
             object-fit: cover;
         }
 
@@ -93,6 +93,15 @@ $libros = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 height: 150px;
             }
         }
+        .card-link {
+            text-decoration: none;
+            color: inherit;
+        }
+        .card-link:hover {
+            text-decoration: none;
+            color: inherit;
+        }
+
     </style>
 </head>
 
@@ -105,8 +114,10 @@ $libros = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php if (count($libros) > 0): ?>
             <?php foreach ($libros as $libro): ?>
                 <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <!-- Convertir la imagen binaria a base64 -->
+
+                    <a class="card-link" href="index.php?page=consumidor/vistalibro&id=<?= $libro['lib_codigo']; ?>">
+                        <div class="card h-100 shadow-sm">
+                            <!-- Convertir la imagen binaria a base64 -->
                         <?php 
                         $imagen_base64 = base64_encode($libro['lib_img']); // Convertir binario a base64
                         $tipo_mime = 'image/png'; // Asumimos que es PNG, cambia si es necesario
@@ -114,7 +125,7 @@ $libros = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <img src="data:<?php echo $tipo_mime; ?>;base64,<?php echo $imagen_base64; ?>" class="card-img-top" alt="<?php echo $libro['lib_titulo']; ?>">
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title"><?php echo $libro['lib_titulo']; ?></h5>
-
+                            
                             <?php
                             // Obtener el nombre del autor basado en el código del autor
                             $autor_codigo = $libro['lib_autor_codigo'];
@@ -128,18 +139,19 @@ $libros = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <p class="card-text">Autor: <?php echo $autor_nombre; ?></p>
                             <p class="card-text">Categoría: <?php echo $libro['lib_categoria']; ?></p>
                             <p class="card-text"><strong>Stock: <?php echo $libro['stock_actual']; ?></strong></p> 
+                        </a>
                             <div class="mt-auto">
                                 <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#reserveModal" aria-label="Reservar <?php echo $libro['lib_titulo']; ?>">Reservar</button>
-                                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#rentModal" aria-label="Alquilar <?php echo $libro['lib_titulo']; ?>">Alquilar</button>
+                               
                             </div>
                         </div>
                     </div>
                 </div>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <p>No se encontraron libros en el catálogo.</p>
+                <?php endforeach; ?>
+                <?php else: ?>
+                    <p>No se encontraron libros en el catálogo.</p>
         <?php endif; ?>
-
+        
     </div>
 </div>
 

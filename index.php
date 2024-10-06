@@ -1,6 +1,19 @@
 <?php
 // No llames a session_start() aquí si ya lo haces en base.php
 // session_start(); 
+
+
+require_once($_SERVER['DOCUMENT_ROOT'] . '/ProyectoFinalMulti/config/database.php');
+
+$pdo = Database::getConnection();
+
+// Consultar los datos de los libros
+$sql = "SELECT lib_codigo FROM libros"; 
+$stmt = $pdo->query($sql);
+$libros = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+if (count($libros) > 0): 
+    foreach ($libros as $libro):
 if (session_status() === PHP_SESSION_NONE) {
     session_start(); // Iniciar la sesión solo si no hay una activa
 }
@@ -24,6 +37,11 @@ switch ($page) {
     case 'auth/login':
             $content = 'views/auth/login.php';
         break;
+        case 'consumidor/vistalibro':
+            $content = 'views/consumidor/vistalibro.php';
+            break;
+        
+        
     case 'admin/dashboard': 
         if(isset($_SESSION['usu_codigo']) && $_SESSION['usu_role'] === 2) {
             $content = "views/consumidor/catalogo.php";
@@ -52,6 +70,7 @@ switch ($page) {
     case 'admin/PrestarLibro':
         $content = 'views/admin/PrestarLibro.php';
             break;
+    
     case 'admin/DevolverLibro':
         $content = 'views/admin/DevolverLibro.php';
             break;         
@@ -66,6 +85,8 @@ switch ($page) {
 break;
 
 }
-
+endforeach;
+endif;
 include('views/base.php'); // Incluir la plantilla base
+  
 ?>

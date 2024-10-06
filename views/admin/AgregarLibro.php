@@ -13,12 +13,12 @@
     }
 
     .table-container {
-            margin-top: 40px;
-            padding: 20px;
-            background-color: #ffffff;
-            border-radius: 1rem;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            }
+        margin-top: 40px;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 1rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
     .form-container {
         margin-top: 40px;
@@ -28,7 +28,7 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         position: relative;
         z-index: 1;
-        background-color: rgba(237,231,225);
+        background-color: rgba(237, 231, 225);
         /* Para asegurarse de que esté por encima del fondo */
     }
 
@@ -271,7 +271,7 @@
                                     </g>
                                 </svg>
                             </div>
-                            
+
                             Clic para subir la imagen del libro
 
                             <input type="file" class="form_control" id="img" name="lib_img" accept="image/*" required>
@@ -324,118 +324,122 @@
                 </div>
             </form>
 
-            
+
         </div>
     </div>
 
-<div class="table-container shadow-lg mt-5" style="background-color: rgba(237,231,225);position: relative;
+    <div class="table-container shadow-lg mt-5" style="background-color: rgba(237,231,225);position: relative;
         z-index: 1;">
-    <h2>Lista de Libros</h2>
-    <table class="table table-stripe">
-        <thead class="table-dark">
-            <tr>
-          
+        <h2>Lista de Libros</h2>
+        <table class="table table-stripe">
+            <thead class="table-dark">
+                <tr>
+
                     <th>Ttulo</th>
                     <th>Autor</th>
                     <th>Categoria</th>
                     <th>Imagen</th>
                     <th>Cantidad real</th>
                     <th>Stock Actual</th>
-                   
+
                     <th class="text-end">Acciones</th>
-                
-            </tr>
-        </thead>
-        <tbody>
-        <?php
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/ProyectoFinalMulti/config/database.php');
-    $conn = Database::getConnection();
-    $sql = "SELECT lib_codigo, lib_titulo, lib_autor_codigo, lib_categoria, lib_img, lib_cantidad_real, stock_actual FROM Libros";
-    $stmt = $conn->query($sql);
-    $Libros = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    if (!empty($Libros)) {
-        foreach ($Libros as $Libro) {
-            // Fila normal con el autor
-            echo '<tr id="row-' . $Libro['lib_codigo'] . '">';
-            echo '<td>' . htmlspecialchars($Libro['lib_titulo']) . '</td>';
-            // Obtener el nombre del autor
-            $autorSql = "SELECT Autor_nombre FROM autores WHERE Autores_id = :autor_id";
-            $autorStmt = $conn->prepare($autorSql);
-            $autorStmt->bindParam(':autor_id', $Libro['lib_autor_codigo']);
-            $autorStmt->execute();
-            $autor = $autorStmt->fetch(PDO::FETCH_ASSOC);
-            echo '<td>' . htmlspecialchars($autor['Autor_nombre']) . '</td>';
-            echo '<td>' . htmlspecialchars($Libro['lib_categoria']) . '</td>';
-            echo '<td><img src="data:image/jpeg;base64,' . base64_encode($Libro['lib_img']) . '" alt="Imagen del libro" style="width: 50px; height: auto;"></td>';
-            echo '<td>' . htmlspecialchars($Libro['lib_cantidad_real']) . '</td>';
-            echo '<td>' . htmlspecialchars($Libro['stock_actual']) . '</td>';
-            echo '<td class="text-end">
-                    <button class="btn btn-warning btn-sm" onclick="editRow(' . $Libro['lib_codigo'] . ')">Editar</button>
-                    <form method="POST" action="../proyectofinalmulti/controllers/UPDE/deletelibro.php" style="display:inline;">
-                        <input type="hidden" name="lib_codigo" value="' . $Libro['lib_codigo'] . '">
-                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                    </form>
-                  </td>';
-            echo '</tr>';
 
-            // Fila de edición oculta
-            echo '<tr id="edit-row-' . $Libro['lib_codigo'] . '" style="display:none;">';
-            echo '<form method="POST" action="../proyectofinalmulti/controllers/UPDE/editarlibro.php">';
-
-            echo '<input type="hidden" name="lib_codigo" value="' . $Libro['lib_codigo'] . '">';
-
-            echo '<td><input type="text" name="lib_titulo" class="form-control" value="' . htmlspecialchars($Libro['lib_titulo']) . '"></td>';
-
-            echo '<td><select name="lib_autor_codigo" class="form-control">';
-
-            $autorSql = "SELECT Autores_id, Autor_nombre FROM autores";
-            $autorStmt = $conn->query($autorSql);
-            $autores = $autorStmt->fetchAll(PDO::FETCH_ASSOC);
-            foreach ($autores as $autor) {
-                $selected = ($autor['Autores_id'] == $Libro['lib_autor_codigo']) ? 'selected' : '';
-                echo '<option value="' . htmlspecialchars($autor['Autores_id']) . '" ' . $selected . '>' . htmlspecialchars($autor['Autor_nombre']) . '</option>';
-            }
-            echo '</select></td>';
-
-            echo '<td><input type="text" name="lib_categoria" class="form-control" value="' . htmlspecialchars($Libro['lib_categoria']) . '"></td>';
-
-            echo '<td>
-                <input type="file" class="form_control" id="img" name="lib_img" accept="image/*">
-                <img src="data:image/jpeg;base64,' . base64_encode($Libro['lib_img']) . '" alt="Imagen del libro" style="width: 50px; height: auto;">
-                  </td>';
-
-            echo '<td><input type="text" name="lib_cantidad_real" class="form-control" value="' . htmlspecialchars($Libro['lib_cantidad_real']) . '"></td>';
-
-            echo '<td><input type="text" name="stock_actual" class="form-control" value="' . htmlspecialchars($Libro['stock_actual']) . '"></td>';
-
-            echo '<td class="text-end">
-                    <button type="submit" class="btn btn-success btn-sm">Guardar</button>
-                    <button type="button" class="btn btn-secondary btn-sm" onclick="cancelEdit(' . $Libro['lib_codigo'] . ')">Cancelar</button>
-                  </td>';
-            echo '</form>';
-            echo '</tr>';
-        }
-        
-    } else {
-        echo '<tr><td colspan="7" class="text-center">No hay libros registrados.</td></tr>';
-    }
-        
+                </tr>
+            </thead>
+            <tbody>
+                                           <?php
+                            require_once($_SERVER['DOCUMENT_ROOT'] . '/ProyectoFinalMulti/config/database.php');
+                            $conn = Database::getConnection();
+                            $sql = "SELECT lib_codigo, lib_titulo, lib_autor_codigo, lib_categoria, lib_img, lib_cantidad_real, stock_actual FROM Libros";
+                            $stmt = $conn->query($sql);
+                            $Libros = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            if (!empty($Libros)) {
+                                foreach ($Libros as $Libro) {
+                                    // Fila normal con el autor
+                                    echo '<tr id="row-' . $Libro['lib_codigo'] . '">';
+                                    echo '<td>' . htmlspecialchars($Libro['lib_titulo']) . '</td>';
+                                    // Obtener el nombre del autor
+                                    $autorSql = "SELECT Autor_nombre FROM autores WHERE Autores_id = :autor_id";
+                                    $autorStmt = $conn->prepare($autorSql);
+                                    $autorStmt->bindParam(':autor_id', $Libro['lib_autor_codigo']);
+                                    $autorStmt->execute();
+                                    $autor = $autorStmt->fetch(PDO::FETCH_ASSOC);
+                                    echo '<td>' . htmlspecialchars($autor['Autor_nombre']) . '</td>';
+                                    echo '<td>' . htmlspecialchars($Libro['lib_categoria']) . '</td>';
+                            
+                                    echo '<td>
+                                    <img src="data:image/jpeg;base64,' . base64_encode($Libro['lib_img']) . '" alt="Imagen del libro" style="width: 50px; height: auto;">
+                                    </td>';
+                            
+                                    echo '<td>' . htmlspecialchars($Libro['lib_cantidad_real']) . '</td>';
+                                    echo '<td>' . htmlspecialchars($Libro['stock_actual']) . '</td>';
+                                    echo '<td class="text-end">
+                                            <button class="btn btn-warning btn-sm" onclick="editRow(' . $Libro['lib_codigo'] . ')">Editar</button>
+                                            <form method="POST" action="../proyectofinalmulti/controllers/UPDE/deletelibro.php" style="display:inline;"> 
+                                                <input type="hidden" name="lib_codigo" value="' . $Libro['lib_codigo'] . '">
+                                                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                            </form>
+                                          </td>';
+                                    echo '</tr>';
+                            
+                                    // Fila de edición oculta
+                                    echo '<tr id="edit-row-' . $Libro['lib_codigo'] . '" style="display:none;">';
+                                    echo '<form method="POST" action="../proyectofinalmulti/controllers/UPDE/editarlibro.php" enctype="multipart/form-data">';  // Añadir enctype para soportar archivos
+                            
+                                    echo '<input type="hidden" name="lib_codigo" value="' . $Libro['lib_codigo'] . '">';
+                                    // Agregar un campo oculto para almacenar la imagen actual
+                                    echo '<input type="hidden" name="lib_img_actual" value="' . htmlspecialchars($Libro['lib_img']) . '">'; // Aquí se guarda el valor original
+                            
+                                    // Mostrar la imagen existente
+                                    echo '<td><input type="text" name="lib_titulo" class="form-control" value="' . htmlspecialchars($Libro['lib_titulo']) . '"></td>';
+                            
+                                    echo '<td><select name="lib_autor_codigo" class="form-control">';
+                                    $autorSql = "SELECT Autores_id, Autor_nombre FROM autores";
+                                    $autorStmt = $conn->query($autorSql);
+                                    $autores = $autorStmt->fetchAll(PDO::FETCH_ASSOC);
+                                    foreach ($autores as $autor) {
+                                        $selected = ($autor['Autores_id'] == $Libro['lib_autor_codigo']) ? 'selected' : '';
+                                        echo '<option value="' . htmlspecialchars($autor['Autores_id']) . '" ' . $selected . '>' . htmlspecialchars($autor['Autor_nombre']) . '</option>';
+                                    }
+                                    echo '</select></td>';
+                            
+                                    echo '<td><input type="text" name="lib_categoria" class="form-control" value="' . htmlspecialchars($Libro['lib_categoria']) . '"></td>';
+                            
+                                    echo '<td>
+                                        <input type="file" id="img" name="lib_img" accept="image/*">
+                                        <img src="data:image/jpeg;base64,' . base64_encode($Libro['lib_img']) . '" alt="Imagen del libro" style="width: 50px; height: auto;">
+                                      </td>';
+                            
+                                    echo '<td><input type="text" name="lib_cantidad_real" class="form-control" value="' . htmlspecialchars($Libro['lib_cantidad_real']) . '"></td>';
+                                    echo '<td><input type="text" name="lib_stock_real" class="form-control" value="' . htmlspecialchars($Libro['stock_actual']) . '"></td>';
+                            
+                                    echo '<td class="text-end">
+                                            <button type="submit" class="btn btn-success btn-sm">Guardar</button>
+                                            <button type="button" class="btn btn-secondary btn-sm" onclick="cancelEdit(' . $Libro['lib_codigo'] . ')">Cancelar</button>
+                                          </td>';
+                                    echo '</form>';
+                            
+                                    echo '</tr>';
+                                }
+                            } else {
+                                echo '<tr><td colspan="7" class="text-center">No hay libros registrados.</td></tr>';
+                            }
  ?>
-        </tbody>
-    </table>
-</div>
+            </tbody>
+        </table>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        function editRow(id) {
-            document.getElementById(`row-${id}`).style.display = 'none';
-            document.getElementById(`edit-row-${id}`).style.display = '';
-        }
+    function editRow(id) {
+        document.getElementById(`row-${id}`).style.display = 'none';
+        document.getElementById(`edit-row-${id}`).style.display = '';
+    }
 
-        function cancelEdit(id) {
-            document.getElementById(`row-${id}`).style.display = '';
-            document.getElementById(`edit-row-${id}`).style.display = 'none';
-        }
-        </script>
+    function cancelEdit(id) {
+        document.getElementById(`row-${id}`).style.display = '';
+        document.getElementById(`edit-row-${id}`).style.display = 'none';
+    }
+    </script>
 </body>
 
 </html>
