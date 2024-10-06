@@ -1,6 +1,7 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start(); // Iniciar la sesión solo si no hay una activa
+    ob_start(); // Iniciar el almacenamiento en búfer de salida
 }
 ?>
     <?php if (isset($_SESSION['usu_codigo'])): ?>
@@ -178,3 +179,6 @@ button:hover{
 </body>
 
 </html>
+<?php
+ob_end_flush();
+?>
