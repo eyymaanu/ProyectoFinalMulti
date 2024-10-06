@@ -1,4 +1,5 @@
 <?php
+ob_start();
 session_start(); // Iniciar la sesión
 
 include('../config/database.php'); // Incluir la configuración de la base de datos
@@ -33,5 +34,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-
+ob_end_flush();
 ?>

@@ -1,4 +1,6 @@
-<?php $content = 'base.php'; ?>
+<?php $content = 'base.php'; 
+ob_start():
+?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -245,3 +247,6 @@ body {
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 </body>
 </html>
+<?php
+ob_end_flush():
+?>
