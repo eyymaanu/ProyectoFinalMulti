@@ -5,13 +5,16 @@ class Database {
     private function __construct() {}
 
     public static function getConnection() {
+
         if (self::$pdo === null) {
-            $host = 'localhost';
-            $db = 'proyectofinalmulti';
-            $user = 'root';
-            $pass = '';
+            $host = 'ewr1.clusters.zeabur.com';
+            $port = '31673';
             $charset = 'utf8mb4';
-            $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+            $db = 'zeabur';
+            $user = 'root';
+            $pass = 'J3Ia92UqDwFkW60pE8viQ7cduZ14jO5P';
+
+            $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=$charset";
 
             $options = [
                 PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
