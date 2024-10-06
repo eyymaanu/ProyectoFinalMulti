@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $lib_titulo = $_POST['lib_titulo'];
     $lib_categoria = $_POST['lib_categoria'];
     $lib_cantidad_real = $_POST['lib_cantidad_real'];
-    $stock_actual = $_POST['stock_actual'];
+    $stock_actual = $_POST['stock_actual'];z
     
     // Validar y procesar la imagen
     $lib_img = null;
