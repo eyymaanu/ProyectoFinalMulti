@@ -51,9 +51,7 @@ if (session_status() === PHP_SESSION_NONE) {
     transition: all 0.8s ease;
 }
 
-.navbar-brand {
-  
-}
+
 
 
 .nav-link {
@@ -158,7 +156,7 @@ button:hover{
                 </nav>
                 
                 <!-- Contenedor principal -->
-                <div class="container mt-3 pt-3"> <!-- Ajusta el margen superior para que el contenido no quede oculto por el navbar -->
+                <div class="container mt-2 pt-3"> <!-- Ajusta el margen superior para que el contenido no quede oculto por el navbar -->
                     <?php endif; ?>
                     <?php include($content); ?>
                 </div>

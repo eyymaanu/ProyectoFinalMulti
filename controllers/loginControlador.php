@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $usuario = $_POST['usuario']; // Obtener el nombre de usuario del formulario
     $contrasena = $_POST['contrasena']; // Obtener la contraseña del formulario
     $conn = Database::getConnection(); // Obtener la conexión a la base de datos
-    $auth = new Auth($conn); // Crear una instancia de la clase Auth
+    $auth = new Auth($conn); // Crear una instancia de la clase Auth 
 
     if ($auth->login($usuario, $contrasena)) {
         // El inicio de sesión fue exitoso, iniciar la sesión

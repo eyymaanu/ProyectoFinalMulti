@@ -169,61 +169,75 @@ body {
 
 
             </div>
+
             <div class="col mb-4">
+                <a href="index.php?page=admin/AgregarLibro">
                 <div class="card h-100 shadow-sm card-hover">
                     <div class="card-img-wrapper">
                         <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="Misty mountains">
                     </div>
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">Registrar Libros</h5>
-                        <p class="card-text flex-grow-1">Discover the beauty of mountain vistas.</p>
+                        <p class="card-text flex-grow-1">Agregar Libros de la biblioteca en el sistema web.</p>
                     </div>
                 </div>
+                </a>
             </div>
+
             <div class="col mb-4">
+                <a href="index.php?page=admin/gestionarAutor">
                 <div class="card h-100 shadow-sm card-hover">
                     <div class="card-img-wrapper">
                         <img src="https://plus.unsplash.com/premium_photo-1661383948918-f17cc65b0e21?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="Peaceful beach">
                     </div>
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">Registrar Autores</h5>
-                        <p class="card-text flex-grow-1">Relax with soothing coastal views.</p>
+                        <p class="card-text flex-grow-1">Registrar Autores de los libros que se registrarán en el sistema.</p>
                     </div>
                 </div>
+                </a>
             </div>
+
             <div class="col mb-4">
+            <a href="index.php?page=admin/PrestarLibro">
                 <div class="card h-100 shadow-sm card-hover">
                     <div class="card-img-wrapper">
-                        <img src="" class="card-img-top" alt="Zen garden">
+                        <img src="https://3.bp.blogspot.com/-pSFsqlGZFjs/WIABV-ut6uI/AAAAAAAAAhk/26ga7efbSI4gjsP9d1v3FDAOpBnhp0WgQCLcB/s400/prestamo.gif" class="card-img-top" alt="Zen garden">
                     </div>
                     <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">Zen Harmony</h5>
-                        <p class="card-text flex-grow-1">Find balance in tranquil gardens.</p>
+                        <h5 class="card-title">Revisar Prestamos</h5>
+                        <p class="card-text flex-grow-1">Revisar los libros prestados</p>
                     </div>
                 </div>
+            </a>
             </div>
+            
             <div class="col mb-4">
+            <a href="index.php?page=admin/ReservarLibro">
                 <div class="card h-100 shadow-sm card-hover">
                     <div class="card-img-wrapper">
-                        <img src="" class="card-img-top" alt="Calm lake">
+                        <img src="https://www.comunidadbaratz.com/wp-content/uploads/El-prestamo-de-libros-ha-sido-es-y-seguira-siendo-el-servicio-estrella-de-las-bibliotecas.jpg" class="card-img-top" alt="Calm lake">
                     </div>
                     <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">Lake Reflection</h5>
-                        <p class="card-text flex-grow-1">Mirror-like waters for inner peace.</p>
+                        <h5 class="card-title">Libros Reservados</h5>
+                        <p class="card-text flex-grow-1">Ver los libros reservados que se encuentran registrados en el sistema .</p>
                     </div>
                 </div>
+                </a>
             </div>
             <div class="col mb-4">
+                <a href="index.php?page=admin/DevolverLibro">
                 <div class="card h-100 shadow-sm card-hover">
                     <div class="card-img-wrapper">
-                        <img src="" class="card-img-top" alt="Starry sky">
+                        <img src="https://escoladeartelugo.com//wp-content/uploads/2020/06/devlib01.png" class="card-img-top" alt="Starry sky">
                     </div>
                     <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">Celestial Wonder</h5>
-                        <p class="card-text flex-grow-1">Gaze at the mesmerizing night sky.</p>
+                        <h5 class="card-title">Libros Devueltos</h5>
+                        <p class="card-text flex-grow-1">Ver los libros devueltos en el sistema</p>
                     </div>
                 </div>
             </div>
+            </a>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

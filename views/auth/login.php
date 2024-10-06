@@ -117,12 +117,6 @@ button::before {
 }
 
 
-.padre{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
 @keyframes sh02 {
     from {
       opacity: 0;
@@ -167,6 +161,13 @@ button::before {
     background-image: radial-gradient(circle at 53% 47%, hsla(172.0588235294118, 100%, 15%, 0.46) 12.234752994669636%, transparent 52.264096832990425%), radial-gradient(circle at 0% 50%, hsla(248.51427637118405, 100%, 13%, 1) 19.036690230222092%, transparent 50%), radial-gradient(circle at 4% 10%, hsla(255.44117647058818, 0%, 0%, 1) 11.730126878761642%, transparent 50%), radial-gradient(circle at 80% 50%, hsla(255.44117647058818, 0%, 0%, 1) 0%, transparent 50%), radial-gradient(circle at 80% 0%, hsla(242.2058823529412, 100%, 28%, 1) 0%, transparent 50%), radial-gradient(circle at 0% 100%, hsla(0, 0%, 29%, 0) 0%, transparent 50%), radial-gradient(circle at 80% 100%, hsla(0, 0%, 10%, 0) 0%, transparent 50%), radial-gradient(circle at 0% 0%, hsla(184.00000000000026, 10%, 14%, 0) 0%, transparent 50%);
     background-blend-mode: normal, normal, normal, normal, normal, normal, normal, normal;
 }
+.padre{
+display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
 
     </style>
 </head>
@@ -179,7 +180,7 @@ button::before {
         <h1 style="text-align: center;">Iniciar Sesión</h1>
         <p style="text-align: center;">Para Iniciar Sesión debes de acercarte a la Biblioteca para Registrarte como Usuario</p>
         
-        <form action="../proyectofinalmulti/controllers/loginControlador.php" method="POST"> <!-- Asegúrate de la ruta correcta -->
+        <form action="../../controllers/loginControlador.php" method="POST"> <!-- Asegúrate de la ruta correcta -->
             <div class="form-group" style="margin-top: 20px;">
                 
                 <input type="text" class="form-control input" id="usuario" name="usuario" required placeholder="Username">
@@ -191,7 +192,7 @@ button::before {
                 <input type="password" class="form-control input" id="contrasena" name="contrasena" required placeholder="Contraseña">
             </div>
             <div class="form-group">
-                <a href="../proyectofinalmulti/views/auth/contrasenaOlvidada.php">¿Olvidaste tu contraseña?</a>
+                <a href="../auth/contrasenaOlvidada.php">¿Olvidaste tu contraseña?</a>
             </div>
             
             <button type="submit" class="btn btn-primary">Iniciar Sesión</button>

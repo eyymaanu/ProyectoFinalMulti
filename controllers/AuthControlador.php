@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Captura el correo electrónico del formulario
     $usu_email = $_POST['usu_email'];
     // Conectar a la base de datos
-    $conn = Database::getConnection();
+    $conn = Database::getConnection(); 
     // Consulta para verificar si el usuario existe
     try{
 
@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute();
        
         // Comprobar si el usuario existe
-        if ($stmt->rowCount()> 0) {
+        if ($stmt->rowCount()> 0) { 
             
             // Generar un token único para el restablecimiento de contraseña
          

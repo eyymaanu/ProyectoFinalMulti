@@ -5,7 +5,7 @@ function encriptarCadena($string) {
 }
 
 // Función para verificar la contraseña
-function verificarCadena($string, $hash) {
+function verificarCadena($string, $hash) {  
     return password_verify($string, $hash); // Verificar la cadena encriptada
 }
 ?>
