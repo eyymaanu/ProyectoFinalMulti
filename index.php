@@ -1,8 +1,10 @@
 <?php
+ob_start(); // Iniciar el almacenamiento en búfer de salida
 // No llames a session_start() aquí si ya lo haces en base.php
 // session_start(); 
 
-require_once '/config/database.php'; // Incluir el archivo Database.php
+
+require_once($_SERVER['DOCUMENT_ROOT'] . '/ProyectoFinalMulti/config/database.php');
 
 $pdo = Database::getConnection();
 
@@ -87,5 +89,5 @@ break;
 endforeach;
 endif;
 include('views/base.php'); // Incluir la plantilla base
-  
+  ob_end_flush(); // Enviar el búfer de salida y deshabilitar el almacenamiento en búfer de salida
 ?>

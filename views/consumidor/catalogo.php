@@ -1,4 +1,5 @@
 <?php 
+
 // Conectarse a la base de datos
 require_once($_SERVER['DOCUMENT_ROOT'] . '/ProyectoFinalMulti/config/database.php');
 
@@ -159,3 +160,4 @@ $libros = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 </body>
 </html>
+

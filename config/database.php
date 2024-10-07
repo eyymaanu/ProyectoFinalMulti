@@ -7,12 +7,12 @@ class Database {
     public static function getConnection() {
 
         if (self::$pdo === null) {
-            $host = 'ewr1.clusters.zeabur.com';
-            $port = '31673';
+            $host = 'fra1.clusters.zeabur.com';
+            $port = '30250';
             $charset = 'utf8mb4';
             $db = 'zeabur';
             $user = 'root';
-            $pass = 'J3Ia92UqDwFkW60pE8viQ7cduZ14jO5P';
+            $pass = 't8239Fd61fnaVeL0JKkvAE45GbI7HQlo';
 
             $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=$charset";
 

@@ -1,4 +1,5 @@
 <?php
+ob_start(); // Iniciar el almacenamiento en búfer de salida
 if (session_status() === PHP_SESSION_NONE) {
     session_start(); // Iniciar la sesión solo si no hay una activa
 }
@@ -178,3 +179,6 @@ button:hover{
 </body>
 
 </html>
+<?php
+ob_end_flush(); // Enviar el búfer de salida y deshabilitar el almacenamiento en búfer de salida
+?>
